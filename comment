@@ -1,0 +1,27 @@
+server.properties
+
+broker.id=0 → broker.id=1~broker 서버 개수(입력값 3번째 인자)로 변경
+listeners=PLAINTEXT://:9092 → 주석 해제
+advertised.listeners=PLAINTEXT:9092 →주석 해제 및 your.host.name 호스트명으로 변경
+log.dirs=/tmp/kafka-logs → log.dirs=/kaf_data 로 변경
+num.partitions=1 → num.partitions=broker서버 개수 (입력값 3번째 인자)로 변경 
+offsets.topic.replication.factor=1 → offsets.topic.replication.factor=broker 서버 개수(입력값 3번째 인자)
+log.retention.hours=168 → log.retention.hour=240 변경
+log.retention.bytes → log.retention.bytes=3221225472 주석 해제 및 값 변경
+log.segment.bytes → log.segment.bytes=100663296 주석 해제 및 값 변경
+zookeeper.connect=localhost:2181 → zookeeper.connect=broker#:2181,~/zoo_data 로 변경
+min.insync.replicas=2 → 추가
+
+
+zookeeper.properties
+
+dataDir=/tmp/zookeeper → data/Dir=/zoo_data/snapshot 으로 수정
+dataLogDir=/zoo_data/transdata 추가
+tickTime=2000 추가
+initLimit=10 추가
+syncLimit=5 추가
+server 리스트 추가
+server.1=broker1:2888:388~server.3=broker3:2888:3888 추가
+myid 추가
+
+/zoo_data/snapshot/ 이하에 server.properties의 broker.id 번호와 같게 myid 파일 생성
